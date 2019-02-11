@@ -1,0 +1,11 @@
+Exercise - Testing Blackjack Strategies
+Objective: Simulate two approaches to playing Blackjack and show which produces better results in the long run for the player.
+
+Extend your previous Blackjack program so that the Player object plays according to a strategy (e.g. always draw another card if your current score is 17).
+Implement two different strategies and run them enough times to gather decent statistics on which strategy is more effective.  You may choose the two strategies you employ.
+
+Design hint: the Player does some things the same no matter which way the game is being played.
+But the player does some things differently (has a very different implementation) when their strategy changes.
+This makes the Strategy pattern a potentially good choice for creating an architecture that avoids code repetition, and avoids inelegant if-then-else statements.
+We would prefer not to see "do this if playerstrategy == strategy1 else do that" statements.
+

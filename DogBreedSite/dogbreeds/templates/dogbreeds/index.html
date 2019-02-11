@@ -1,0 +1,226 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'dogbreeds/style.css' %}" />
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<div id="headers">
+    <h1>Welcome to the IN710 Dog Selector</h1>
+    <br>
+    <h2>We'll help you choose the perfect dog</h2>
+    <br>
+    <h3>Preferences:</h3>
+</div>
+
+<div class="panel panel-default" id="prefPanel">
+    <div class="panel-body">
+        <form action="{% url 'dogbreeds:results' %}" name="userForm">
+            <div class="optionsContainer">
+                <div class="radioGroupContainer">
+                    <p>Must be good with children:</p>
+                    <!--Radio group-->
+                    <div class="form-check">
+                        <input name="102" type="radio" class="with-gap" id="TRUE">
+                        <label for="radio106">Yes</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input name="102" type="radio" class="with-gap" id="FALSE" checked>
+                        <label for="radio107">No</label>
+                    </div>
+                </div>
+
+                <div class="radioGroupContainer">
+                    <p>Drooling:</p>
+                    <!--Radio group-->
+                    <div class="form-check">
+                        <input name="103" type="radio" class="with-gap" id="TRUE">
+                        <label for="radio106">No Slobbering</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input name="103" type="radio" class="with-gap" id="FALSE" checked>
+                        <label for="radio107">Don't Mind</label>
+                    </div>
+                </div>
+
+                <div class="radioGroupContainer">
+                    <p>Coat Length:</p>
+                    <!--Radio group-->
+                    <div class="form-check">
+                        <input name="104" type="radio" class="with-gap" id="Short">
+                        <label for="radio106">Short</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input name="104" type="radio" class="with-gap" id="Medium" checked>
+                        <label for="radio107">Medium</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input name="104" type="radio" class="with-gap" id="Long" checked>
+                        <label for="radio108">Long</label>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Low</th>
+                        <th>Medium</th>
+                        <th>High</th>
+                        <th>No Preference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Activity Level</td>
+                        <td>
+                            <div class="form-check">
+                                <input name="activity" type="radio" class="with-gap" id="low" checked >
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="activity" type="radio" class="with-gap" id="medium">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="activity" type="radio" class="with-gap" id="high">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="activity" type="radio" class="with-gap" id="noPref">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Shedding Level</td>
+                        <td>
+                            <div class="form-check">
+                                <input name="shedding" type="radio" class="with-gap" id="low" checked >
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="shedding" type="radio" class="with-gap" id="medium">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="shedding" type="radio" class="with-gap" id="high">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="shedding" type="radio" class="with-gap" id="noPref">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Grooming Level</td>
+                        <td>
+                            <div class="form-check">
+                                <input name="grooming" type="radio" class="with-gap" id="low" checked >
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="grooming" type="radio" class="with-gap" id="medium">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="grooming" type="radio" class="with-gap" id="high">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="grooming" type="radio" class="with-gap" id="noPref">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Intelligence Level</td>
+                        <td>
+                            <div class="form-check">
+                                <input name="intelligence" type="radio" class="with-gap" id="low" checked >
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="intelligence" type="radio" class="with-gap" id="medium">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="intelligence" type="radio" class="with-gap" id="high">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="intelligence" type="radio" class="with-gap" id="noPref">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br>
+            <p>Preferred size</p>
+            <select id="sizePref">
+                <option value="Miniature">Miniature</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+                <option value="Giant">Giant</option>
+            </select>
+            <br>
+            <br>
+            <input id="formSubmission" type="submit" value="Submit" onclick="dostuff()">
+            <!-- Link to dogID/results.html -->
+        </form>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    document.getElementById("formSubmission").disabled;
+
+    var dogBreedData = [];
+
+    document.write("{% if dogbreedObjs %}{% for dogbreed in dogbreedObjs %}");
+
+    var tempDogBreed = {
+        "name": "{{ dogbreed.name }}",
+        "activity": "{{ dogbreed.activity }}",
+        "drools": "{{ dogbreed.drools }}",
+        "coat": "{{ dogbreed.coat }}",
+        "goodWC": "{{ dogbreed.goodWC }}",
+        "grooming": "{{ dogbreed.grooming }}",
+        "intelligence": "{{ dogbreed.intelligence }}",
+        "shedding": "{{ dogbreed.shedding }}",
+        "size": "{{ dogbreed.size }}",
+        "image": "{{ dogbreed.image }}"
+    }
+    dogBreedData.push(tempDogBreed);
+    document.write("{% endfor %}{% endif %}");
+</script>
+
+<script src="{% static 'dogbreeds/script.js' %}"></script>
+<div class="footer">
+    <p>Built by Matthew Jeffery</p>
+</div>

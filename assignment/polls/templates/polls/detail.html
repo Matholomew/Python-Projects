@@ -1,0 +1,243 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Trivia</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'polls/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'polls/vendor/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'polls/css/clean-blog.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/styles.css' %}" />
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/polls/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/polls/profile">Highscores</a>
+            </li>
+               <li class="nav-item" id="isLogged">
+              <a class="nav-link" href="/accounts/login">Login</a>
+            </li>
+            <li style="display: none;" class="nav-item" id="signOut">
+              <a class="nav-link" href="/accounts/logout">Log out</a>
+            </li>
+              <li class="nav-item" id="signUp">
+              <a class="nav-link" href="/polls/signup">Sign up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="masthead" style='background-image: url("{% static 'polls/img/home-bg.jpg'%}");'>
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Trivia</h1>
+              <span class="subheading">OOSD Project</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <h1>{{ question.question_text|safe }}</h1>
+
+       {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+        <form class="questionForm">
+            <input type="radio" name="choice" id="radio1" value="" /><span id="radio1Text"></span><br>
+            <input type="radio" name="choice" id="radio2" value="" /><span id="radio2Text"></span><br>
+            <input type="radio" name="choice" id="radio3" value="" /><span id="radio3Text"></span><br>
+            <input type="radio" name="choice" id="radio4" value="" /><span id="radio4Text"></span><br>
+            <br />
+
+            <button type="button" onclick="submitQuestion()">Submit choice</button>
+        </form>
+
+<br><br>
+
+        <h1 id="score"></h1>
+
+    </div>
+
+    <div style="display: none;" id="snackbar">Correct</div>
+    <div style="display: none;" id="snackbar2">Incorrect</div>
+
+    <footer>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'polls/vendor/jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'polls/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="{% static 'polls/js/clean-blog.min.js'%}"></script>
+    <script src="{% static 'polls/js/details.js'%}"></script>
+
+
+  </body>
+
+</html>
+
+
+<script>
+    var choices = []
+
+    var incorrectAnswers = "{{ question.incorrect_answers|safe }}";
+    var correctAnswer = "{{ question.correct_answer|safe }}";
+
+    incorrectAnswers = decodeHTMLEntities(incorrectAnswers)
+    correctAnswer = decodeHTMLEntities(correctAnswer)
+
+    var clean = incorrectAnswers
+    clean = clean.replace(/]/g, '');
+    clean = clean.replace(/\[/g, '');
+    clean = clean.replace(/'/g, '');
+
+
+    var cleaned =  clean.split(',');
+        for(var  i = 0; i < cleaned.length; i++) {
+
+            cleaned[i] = cleaned[i].trim()
+            choices.push(cleaned[i])
+        }
+    choices.push(correctAnswer)
+    console.log(choices)
+
+
+
+    choices = shuffle(choices)
+    console.log(choices)
+
+    document.getElementById("radio1").value = choices[0]
+    document.getElementById("radio1Text").textContent = choices[0]
+
+    document.getElementById("radio2").value = choices[1]
+    document.getElementById("radio2Text").textContent = choices[1]
+
+    document.getElementById("radio3").value = choices[2]
+    document.getElementById("radio3Text").textContent = choices[2]
+
+    document.getElementById("radio4").value = choices[3]
+    document.getElementById("radio4Text").textContent = choices[3]
+
+    function submitQuestion() {
+        var chosenAnswer = getCheckedRdb(document.getElementsByName('choice'))
+        chosenAnswer = chosenAnswer[chosenAnswer.length - 1]
+        chosenAnswer = choices[chosenAnswer - 1]
+        console.log(chosenAnswer)
+        var currentScore = parseInt(localStorage.getItem("score"))
+        var firstQ = localStorage.getItem("firstQ")
+
+        var currentQuestion = window.location.href
+            currentQuestion = currentQuestion.substring(currentQuestion.indexOf('polls/'))
+            currentQuestion = currentQuestion.substring(6)
+            currentQuestion = currentQuestion.substring(currentQuestion.indexOf('/'), -1)
+
+
+        if(firstQ === '0'){
+            localStorage.setItem("firstQ", currentQuestion)
+            firstQ = localStorage.getItem("firstQ")
+        }
+
+
+        if(chosenAnswer === correctAnswer) {
+            runSnackBar()
+
+
+            currentQuestion = parseInt(currentQuestion) + 1
+            var stopQ = parseInt(firstQ) + 10
+            if(currentQuestion <= stopQ) {
+                currentScore += 1
+                localStorage.setItem("score", currentScore)
+                window.location = "/polls/" + currentQuestion
+            }
+            else {
+                // Record highscore and save it to the tournament/questions db table
+                // Redirect to home page
+                currentScore = parseInt(localStorage.getItem("score"))
+                console.log("Highscore: " + currentScore)
+
+                $.ajax({
+                    url: "/polls/score/",
+                    type:"GET",
+                    data: {'total':currentScore,'userid':"{{ user.id }}"}
+                  }).done(function(data){
+                    document.getElementById("score").textContent = "Your score: " + currentScore
+                });
+
+            }
+        }
+        else {
+            runSnackBar2()
+
+            currentQuestion = parseInt(currentQuestion) + 1
+            var stopQ = parseInt(firstQ) + 10
+            console.log(currentQuestion)
+            console.log(stopQ)
+            if(currentQuestion <= stopQ) {
+                console.log(stopQ)
+                window.location = "/polls/" + currentQuestion
+            }
+            else {
+                // Record highscore and save it to the tournament/questions db table
+                // Redirect to home page
+                currentScore = parseInt(localStorage.getItem("score"))
+                console.log("Highscore: " + currentScore)
+
+                $.ajax({
+                    url: "/polls/score/",
+                    type:"GET",
+                    data: {'total':currentScore,'userid':"{{ user.id }}"}
+                  }).done(function(data){
+                      document.getElementsByClassName("container")[0].textContent = "<h1>Your score: " + currentScore + "</h1>"
+                  });
+
+            }
+        }
+    }
+
+    var isLoggedIn = "{{ user }}"
+    if(isLoggedIn !== "AnonymousUser") {
+            document.getElementById("isLogged").style.display = "none";
+            document.getElementById("signOut").style.display = "block";
+    }
+
+</script>
+

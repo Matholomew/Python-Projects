@@ -1,0 +1,99 @@
+body {
+    background-color: #2C3531 !important;
+}
+.panel {
+    margin: 0 auto !important;
+    background-color: #D1E8E2 !important;
+    border: 5px solid #14A76C !important;
+    border-radius: 5px !important;
+}
+
+
+h1, h2 {
+    text-align: center;
+    color: #66FCF1 !important;
+}
+
+#headers h3 {
+    text-align: center;
+    color: #EE652F;
+}
+
+.footer {
+    width: 100%;
+    position: absolute;
+    height: 70px;
+    text-align: center;
+    padding: 30px;
+    color: #66FCF1;
+}
+
+.resultImg {
+    float: right;
+    margin-top: 30px;
+    margin-right: 30px;
+    width: 450px;
+}
+
+.clearfix {
+    overflow: auto;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#resultTbl {
+    float: left;
+    margin-top: 100px;
+    margin-left: 30px;
+    display: inline-block;
+    position: absolute;
+    vertical-align: middle;
+    background-color: #D1E8E2 !important;
+    border-radius: 5px !important;
+    border-radius: 5px !important;
+}
+
+#resultTbl td {
+    width: 300px;
+}
+
+
+li a {
+    color: green;
+}
+
+#prefPanel {
+    margin-left: 35px;
+    padding-left: 20px;
+    width: 900px;
+}
+
+.optionsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 30px;
+}
+
+.radioGroupContainer {
+    border: 1px solid #666;
+    padding: 10px;
+    float: left;
+    width: 250px;
+}
+
+.radioGroupContainer label {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.radioGroupContainer p {
+    font-size: 16px;
+    font-weight: bold;
+
+}

@@ -1,0 +1,147 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'dogbreeds/style.css' %}" />
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<h1>Our Recommendation:</h1>
+<h2 id="suggestedDog">
+    <script type="text/javascript">
+
+    if(localStorage.getItem('notExact') == 1) {
+        document.write("There was no dog that matched that exact search query but we considered the dog size and if they were good with children.");
+    }
+    if(localStorage.getItem('notExact') == 2) {
+        document.write("There was no dog that matched that search query, this is the closest we got to those dog features.");
+    }
+</script>
+</h2>
+<h2>We suggest the 
+<script type="text/javascript">
+
+    var generatedDogBreedName = localStorage.getItem('dogbreedName')
+    document.write(generatedDogBreedName)
+</script>
+</h2>
+<style>
+    table, tr, th, td{
+        min-width: 200px;
+        text-align: center;
+        line-height: 40px;
+        border: 3px solid #14A76C;
+    }
+</style>
+<div class="resultImg">
+    <img src="#" id="dogImage">
+    <script type="text/javascript">
+        var generatedDogBreedImage = localStorage.getItem('dogbreedImage')
+        document.getElementById('dogImage').src = "{% static 'dogbreeds/DogImages/' %}" + generatedDogBreedImage;
+    </script>
+</div>
+
+<table id="resultTbl">
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>Activity Level:</td>
+        <td>
+            <script type="text/javascript">
+                var generatedDogBreedActivity = localStorage.getItem('dogbreedActivity')
+                document.write(generatedDogBreedActivity)
+            </script>
+
+        </td>
+        <!-- Choice -->
+    </tr>
+    <tr>
+        <td>Shedding Level:</td>
+        <td>
+            <script type="text/javascript">
+                var generatedDogBreedShedding = localStorage.getItem('dogbreedShedding')
+                document.write(generatedDogBreedShedding)
+            </script>
+        </td>
+        <!-- Choice -->
+    </tr>
+    <tr>
+        <td>Grooming Level:</td>
+        <td>
+            <script type="text/javascript">
+                var generatedDogBreedGrooming = localStorage.getItem('dogbreedGrooming')
+                document.write(generatedDogBreedGrooming)
+            </script>
+        </td>
+        <!-- Choice -->
+    </tr>
+    <tr>
+        <td>Intelligence Level:</td>
+        <td>
+            <script type="text/javascript">
+                var generatedDogBreedIntelligence = localStorage.getItem('dogbreedIntelligence')
+                document.write(generatedDogBreedIntelligence)
+            </script>
+        </td>
+        <!-- Choice -->
+    </tr>
+    <tr>
+        <td>Good With Children:</td>
+        <td>
+            <script type="text/javascript">
+                var generatedDogBreedGoodWC = localStorage.getItem('dogbreedGoodWC')
+                document.write(generatedDogBreedGoodWC)
+            </script>
+        </td>
+        <!-- Choice -->
+    </tr>
+    <tr>
+        <td>Drools:</td>
+        <td>
+            <script type="text/javascript">
+                var generatedDogBreedDrools = localStorage.getItem('dogbreedDrools')
+                document.write(generatedDogBreedDrools)
+            </script>
+        </td>
+        <!-- Choice -->
+    </tr>
+    <tr>
+        <td>Coat Length:</td>
+        <td>
+            <script type="text/javascript">
+                var generatedDogBreedCoat = localStorage.getItem('dogbreedCoat')
+                document.write(generatedDogBreedCoat)
+            </script>
+        </td>
+        <!-- Choice -->
+    </tr>
+    <tr>
+        <td>Size:</td>
+        <td>
+            <script type="text/javascript">
+                var generatedDogBreedSize = localStorage.getItem('dogbreedSize')
+                document.write(generatedDogBreedSize)
+            </script>
+        </td>
+        <!-- Choice -->
+    </tr>
+</table>
+
+<form action="{% url 'dogbreeds:index' %}" style="position: absolute; bottom: 0; margin-left: calc(1200px / 2)">
+    <input type="submit" value="Choose Another Dog" onclick="clearSession()">
+</form>
+
+<script type="text/javascript">
+    function clearSession() {
+        localStorage.clear();
+    }
+
+</script>

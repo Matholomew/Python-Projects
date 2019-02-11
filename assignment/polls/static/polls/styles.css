@@ -1,0 +1,47 @@
+li a {
+    color: #2C2C2C;
+    line-height: 30px;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+body {
+    background-color:  #f9f9f9;
+    min-height: 800px;
+}
+
+.beginButton {
+    position: absolute;
+    margin-left: calc(100%/2 - 220px);
+    margin-top: -50px;
+}
+
+.questionForm span {
+    padding-left: 20px;
+}
+
+.questionForm {
+    margin: 0 auto;
+}
+
+#snackbar, #snackbar2 {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #00C2BB;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show, #snackbar2.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
